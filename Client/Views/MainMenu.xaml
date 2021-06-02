@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="Client.Views.MainMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Client.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Client.View_Model"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.DataContext>
+        <vm:MainMenuVM/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+            <ColumnDefinition Width="50*"></ColumnDefinition>
+            <ColumnDefinition Width="20*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+                        
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Padding="10">
+            <TextBlock x:Name="UserName" Text="{Binding Username}" Margin="5" ></TextBlock>
+            <TextBlock x:Name="Chat" Text="{Binding IncomingMessage}" Margin="5" FontSize="28"></TextBlock>
+            <StackPanel Padding="10" Orientation="Horizontal" x:Name="MyMessage">
+                <TextBox x:Name="Recipient" Text="{Binding Recipient, Mode=TwoWay}" Margin="5"></TextBox>
+                <TextBox x:Name="Message" Text="{Binding OutgoingMsg, Mode=TwoWay}" Margin="5" Width="700" ></TextBox>
+            </StackPanel>
+            <Button Content="Send" Margin="5" Command="{Binding SendMsgCommand}"></Button>
+            <StackPanel>
+                <TextBox x:Name="InvitationRecipient" Text="{Binding BackgammonInvitationRecipient, Mode=TwoWay}"></TextBox>
+                <Button Content="Invite" Command="{Binding BackgammonInviteCommand}"></Button>
+            </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="0" Grid.Column="2" x:Name="Notifications" >
+            <TextBlock Text="Notifications"></TextBlock>
+            <StackPanel x:Name="Notification" Visibility="{Binding ShowNotifiction}">
+                <TextBlock Text="{Binding InviteContent}" x:Name="InvContent"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Accept" Margin="5" Command="{Binding AcceptGameInviteCommand}"></Button>
+                    <Button Content="Decline" Margin="5"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

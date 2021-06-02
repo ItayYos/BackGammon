@@ -1,0 +1,1 @@
+C:\Programs\Signal R\Project\1. SheshBesh - Dependency Injection + Events\Client\Client.csproj;x86
